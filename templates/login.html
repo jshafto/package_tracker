@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Login to track your packages</h2>
+<form method="post" action="{{ url_for('.login') }}">
+  {{ form.csrf_token }}
+  <div>
+    {{ form.username.label }} {{ form.username }}
+
+    {% if form.username.errors %}
+      <ul>
+        {% for error in form.username.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>
+    {{ form.password.label }} {{ form.password }}
+    {% if form.password.errors %}
+      <ul>
+        {% for error in form.password.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>{{ form.submit }}</div>
+</form>
+<div>
+    Don't have an account? <a href="/signup">Sign up here.</a>
+</div>
+{% endblock %}

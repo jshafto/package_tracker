@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Package Tracker</title>
-</head>
-<body>
-    <a href="/">All Packages</a>
-    <form method="POST" action="/new_package">
-        {{ form.csrf_token }}
-        <div>{{ form.sender.label }} {{ form.sender }}</div>
-        <div>{{ form.recipient.label }} {{ form.recipient }}</div>
-        <div>{{ form.origin.label }} {{ form.origin }}</div>
-        <div>{{ form.destination.label }} {{ form.destination }}</div>
-        <div>{{ form.express.label }} {{ form.express }}</div>
-        <div>{{ form.submit }}</div>
-        <button>Cancel</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content%}
+<form method="POST" action="/new_package">
+    {{ form.csrf_token }}
+    <div>{{ form.sender.label }} {{ form.sender }}</div>
+    <div>{{ form.recipient.label }} {{ form.recipient }}</div>
+    <div>{{ form.origin.label }} {{ form.origin }}</div>
+    <div>{{ form.destination.label }} {{ form.destination }}</div>
+    <div>{{ form.express.label }} {{ form.express }}</div>
+    <div>
+        {{ form.submit }}
+        <a href="/"><button type="button">Cancel</button></a>
+    </div>
+</form>
+{% endblock %}

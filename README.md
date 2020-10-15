@@ -8,7 +8,7 @@ Data-driven Flask app for tracking package progress and status during shipping.
 - [x] Project setup
 - [x] Create and integrate database
 - [x] Add package model and display packages view
-- [ ] Add users table
-- [ ] Add login/logout routes
+- [x] Add users table
+- [x] Add login/logout routes
 - [ ] Filter packages by origin and desitination
 - [ ] Package deletion

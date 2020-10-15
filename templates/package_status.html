@@ -1,35 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Package Tracker</title>
-</head>
-<body>
-    <h2>Your Packages</h2>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Sender Name</th>
-            <th>Recipient Name</th>
-            <th>Origin</th>
-            <th>Destination</th>
-            <th>Current Location</th>
-        </thead>
-        <tbody>
-            
-            {% for package in packages %}
-            <tr>
-                <td>{{package.id}}</td>
-                <td>{{package.sender}}</td>
-                <td>{{package.recipient}}</td>
-                <td>{{package.origin}}</td>
-                <td>{{package.destination}}</td>
-                <td>{{package.location}}</td>
+{% extends "base.html" %}
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+{% block content %}
+<h2>Your Packages</h2>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Sender Name</th>
+        <th>Recipient Name</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Current Location</th>
+    </thead>
+    <tbody>
+        {% for package in packages %}
+        <tr>
+            <td>{{package.id}}</td>
+            <td>{{package.sender}}</td>
+            <td>{{package.recipient}}</td>
+            <td>{{package.origin}}</td>
+            <td>{{package.destination}}</td>
+            <td>{{package.location}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
