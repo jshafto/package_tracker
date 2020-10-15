@@ -14,6 +14,7 @@
         <th>Origin</th>
         <th>Destination</th>
         <th>Current Location</th>
+        <th>Delete Package</th>
     </thead>
     <tbody>
         {% for package in packages %}
@@ -24,7 +25,11 @@
             <td>{{package.origin}}</td>
             <td>{{package.destination}}</td>
             <td>{{package.location}}</td>
-
+            <td>
+                <form action="/delete/{{package.id}}" method="post">
+                    <button type="submit">X</button>
+                <form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

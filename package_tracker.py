@@ -114,3 +114,12 @@ def cities(city=0):
         packages = Package.query.filter_by(user_id=current_user.id).all()
     return render_template(
         'package_status.html', packages=packages, cities=cities)
+
+
+@app.route('/delete/<int:id>', methods=["POST"])
+def packages(id=0):
+    if id:
+        package = Package.query.get(id)
+        db.session.delete(package)
+        db.session.commit()
+    return redirect(url_for('.index'))
