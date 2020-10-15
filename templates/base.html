@@ -8,11 +8,13 @@
 <body>
     <div>
         {% if not current_user.is_anonymous %}
-        <a href="/">Track Packages</a>
-        <a href="/new_package">New Package</a>
-        <form method="POST" action="{{url_for('.logout')}}">
-            <button>Logout</button>
-        </form>
+        <div class="nav">
+            <a href="/">Track Packages</a>
+            <a href="/new_package">New Package</a>
+            <form method="POST" action="{{url_for('.logout')}}">
+                <button>Logout</button>
+            </form>
+        </div>
         {% endif %}
     </div>
     {% block content %}{% endblock %}

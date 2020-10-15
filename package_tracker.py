@@ -23,7 +23,7 @@ def load_user(id):
 @app.route('/')
 @login_required
 def index():
-    packages = Package.query.all()
+    packages = Package.query.filter_by(user_id=current_user.id).all()
     return render_template('package_status.html', packages=packages)
 
 
@@ -31,12 +31,14 @@ def index():
 def new_package():
     form = ShippingForm()
     if form.validate_on_submit():
+        print(current_user.id)
         data = form.data
         new_package = Package(sender=data["sender"],
                               recipient=data["recipient"],
                               origin=data["origin"],
                               destination=data["destination"],
-                              location=data["origin"])
+                              location=data["origin"],
+                              user_id=current_user.id)
         db.session.add(new_package)
         db.session.commit()
         Package.advance_all_locations()
@@ -65,7 +67,8 @@ def signup():
         return redirect("/")
     form = SignupForm()
     if form.validate_on_submit():
-        existing_user = User.query.filter_by(username=form.username.data).first()
+        existing_user = User.query.filter_by(
+            username=form.username.data).first()
         if existing_user is None:
             user = User(
                 username=form.username.data,
