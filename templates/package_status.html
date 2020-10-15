@@ -2,6 +2,10 @@
 
 {% block content %}
 <h2>Your Packages</h2>
+<h3>Filter by origin city</h3>
+{% for city in cities %}
+    <a href="/cities/{{city}}">{{city}}</a>
+{% endfor %}
 <table>
     <thead>
         <th>ID</th>

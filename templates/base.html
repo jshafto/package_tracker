@@ -9,7 +9,8 @@
     <div>
         {% if not current_user.is_anonymous %}
         <div class="nav">
-            <a href="/">Track Packages</a>
+            <a href="/">Track All Packages</a>
+            <a href="{{url_for('.delivered')}}">Completed Deliveries</a>
             <a href="/new_package">New Package</a>
             <form method="POST" action="{{url_for('.logout')}}">
                 <button>Logout</button>

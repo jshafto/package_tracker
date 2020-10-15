@@ -6,6 +6,8 @@ from app.login_form import LoginForm, SignupForm
 from flask_migrate import Migrate
 from app.models import db, Package, User
 from flask_login import login_required, current_user, login_user, logout_user
+from map.map import map
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -23,8 +25,10 @@ def load_user(id):
 @app.route('/')
 @login_required
 def index():
+    cities = map.keys()
     packages = Package.query.filter_by(user_id=current_user.id).all()
-    return render_template('package_status.html', packages=packages)
+    return render_template(
+        'package_status.html', packages=packages, cities=cities)
 
 
 @app.route('/new_package', methods=['GET', 'POST'])
@@ -86,3 +90,27 @@ def signup():
 def logout():
     logout_user()
     return redirect(url_for('.login'))
+
+
+@app.route('/delivered')
+@login_required
+def delivered():
+    cities = map.keys()
+    packages = Package.query.filter_by(
+        user_id=current_user.id,
+        location="Delivered").all()
+    return render_template(
+        'package_status.html', packages=packages, cities=cities)
+
+
+@app.route('/cities/<city>')
+@login_required
+def cities(city=0):
+    cities = map.keys()
+    if city:
+        packages = Package.query.filter_by(
+            user_id=current_user.id, origin=city).all()
+    else:
+        packages = Package.query.filter_by(user_id=current_user.id).all()
+    return render_template(
+        'package_status.html', packages=packages, cities=cities)

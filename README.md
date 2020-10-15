@@ -10,5 +10,5 @@ Data-driven Flask app for tracking package progress and status during shipping.
 - [x] Add package model and display packages view
 - [x] Add users table
 - [x] Add login/logout routes
-- [ ] Filter packages by delivery status
+- [x] Filter packages by delivery status and origin
 - [ ] Package deletion

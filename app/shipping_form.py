@@ -5,6 +5,7 @@ from wtforms.fields import (
 from wtforms.validators import DataRequired
 from map.map import map
 
+
 class ShippingForm(FlaskForm):
     cities = [(k, k) for k in map.keys()]
     sender = StringField("Sender", [DataRequired()])
