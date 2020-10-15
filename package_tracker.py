@@ -11,7 +11,8 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
-    return "Package Tracker"
+    packages = Package.query.all()
+    return render_template('package_status.html', packages=packages)
 
 @app.route('/new_package', methods=['GET', 'POST'])
 def new_package():
@@ -25,5 +26,6 @@ def new_package():
                               location=data["origin"])
         db.session.add(new_package)
         db.session.commit()
+        Package.advance_all_locations()
         return redirect('/')
     return render_template('shipping_request.html', form=form)

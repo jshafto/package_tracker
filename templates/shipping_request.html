@@ -6,6 +6,7 @@
     <title>Package Tracker</title>
 </head>
 <body>
+    <a href="/">All Packages</a>
     <form method="POST" action="/new_package">
         {{ form.csrf_token }}
         <div>{{ form.sender.label }} {{ form.sender }}</div>
