@@ -5,5 +5,5 @@ Completed as part of the App Academy curriculum. Implementation by Alec Garcia a
 Data-driven Flask app for tracking package progress and status during shipping.
 
 ## Project Checklist
-- [ ] Project setup
+- [x] Project setup
 - [ ] Create and integrate database
